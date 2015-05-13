@@ -67,3 +67,5 @@ execute pathogen#infect()
 
 " ejs files should just look like html
 au BufNewFile,BufRead *.ejs set filetype=html
+
+colorscheme elflord
