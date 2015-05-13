@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/zwener-fligner/Code/zachwf/source/_posts/test-interactive'
+let g:netrw_dirhist_2='/Users/zwener-fligner/Code/um-uh-map/src/js'
+let g:netrw_dirhist_3='/Users/zwener-fligner/Code/zachwf/source/_posts/test-interactive'
+let g:netrw_dirhist_4='/Users/zwener-fligner/Code/zachwf/public/2014/11/09/test-interactive'
+let g:netrw_dirhist_5='/Users/zwener-fligner/Code/zachwf/public/2014/11/09'
+let g:netrw_dirhist_6='/Users/zwener-fligner/.vim/bundle/ctrlp.vim'
+let g:netrw_dirhist_7='/Users/zwener-fligner/.ssh'
