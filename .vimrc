@@ -17,12 +17,14 @@ set incsearch
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set expandtab " just do tab characteres please
+set expandtab " no tab characteres please
 set smarttab
 set shiftround " round indent to multiple of 'shiftwidth'
 set autoindent " align the new line indent with the previous line 
+
 " PEP line width
 set textwidth=79
+
 "Make it real easy to switch tab lengh and space length
 nmap \t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
 nmap \T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
@@ -57,7 +59,11 @@ set hlsearch
 " But be able to get rid of that highlight.
 nmap \q :nohlsearch<CR>
 
-filetype plugin indent on
+" Create folds for indents
+" set foldmethod=indent
+set foldmethod=syntax
+
+filetype indent plugin on
 syntax on
 
 set runtimepath+=~/.vim/bundle/jshint2.vim/
@@ -68,4 +74,29 @@ execute pathogen#infect()
 " ejs files should just look like html
 au BufNewFile,BufRead *.ejs set filetype=html
 
-colorscheme elflord
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ["python", "flake8"]
+" let g:syntastic_python_flake8_quiet_messages = {"regex": '(\[E501\])|(\[E302\])|(\[E402\])'}
+let g:syntastic_python_flake8_args = "--ignore E501,E302,E402,E261"
+
+" Ctrl-P settings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_regexp = 0
+
+" Refresh files when they are changed (this is useful when doing things with
+" git while files are open)
+set autoread
+
+" set background=light
+" colorscheme elflord
+" colorscheme solarized
+colorscheme morning
