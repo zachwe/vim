@@ -1,6 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/etc/profile.d'
-let g:netrw_dirhist_2='/home/zach/dotfiles/vim-dotfiles/bundle/jshint2.vim'
-let g:netrw_dirhist_3='/home/zach/analytics/media/js/engage/triggers/views'
-let g:netrw_dirhist_4='/home/zach/analytics/external/pip-requirements'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/zach/.ssh'
+let g:netrw_dirhist_2='/home/zach/analytics/external/pip-requirements'
+let g:netrw_dirhist_3='/home/zach/mxpnlinternal'

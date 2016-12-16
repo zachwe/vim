@@ -31,7 +31,7 @@ nmap \T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
 nmap \M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
 nmap \m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
 " Wrap after enough columns
-nmap \w :setlocal wrap!<CR>:setlocal wrap<CR>
+" nmap \w :setlocal wrap!<CR>:setlocal wrap<CR>
 
 " Ignore file extensions in autocomplete
 set wildignore=*.swp,*.bak,*.pyc,*.class
@@ -74,6 +74,10 @@ execute pathogen#infect()
 " ejs files should just look like html
 au BufNewFile,BufRead *.ejs set filetype=html
 
+" Display filename
+set laststatus=2
+set statusline+=%F
+
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -86,6 +90,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ["python", "flake8"]
 " let g:syntastic_python_flake8_quiet_messages = {"regex": '(\[E501\])|(\[E302\])|(\[E402\])'}
 let g:syntastic_python_flake8_args = "--ignore E501,E302,E402,E261"
+let g:syntastic_javascript_checkers = ["jshint"]
+" let g:syntastic_javascript_eslint_args = ["-c ~/analytcs/.eslintrc.json"]
 
 " Ctrl-P settings
 let g:ctrlp_map = '<c-p>'
@@ -100,3 +106,10 @@ set autoread
 " colorscheme elflord
 " colorscheme solarized
 colorscheme morning
+
+" Save when switching buffers
+set autowrite
+
+" Don't autowrap
+set textwidth=0
+set wrapmargin=0
