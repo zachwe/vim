@@ -1,5 +1,19 @@
-" Don't be compatible with vi.
-set nocompatible
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Clojure REPL
+Plugin 'tpope/vim-fireplace'
+
+set nocp
 set backspace=2
 
 
@@ -23,7 +37,8 @@ set shiftround " round indent to multiple of 'shiftwidth'
 set autoindent " align the new line indent with the previous line 
 
 " PEP line width
-set textwidth=79
+set textwidth=80
+set fo+=t
 
 "Make it real easy to switch tab lengh and space length
 nmap \t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
@@ -88,9 +103,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ["python", "flake8"]
-" let g:syntastic_python_flake8_quiet_messages = {"regex": '(\[E501\])|(\[E302\])|(\[E402\])'}
-let g:syntastic_python_flake8_args = "--ignore E501,E302,E402,E261"
 let g:syntastic_javascript_checkers = ["jshint"]
+let g:syntastic_python_checker_args='--ignore=E402'
+let g:syntastic_python_flake8_post_args='--ignore=E501,E402'
 " let g:syntastic_javascript_eslint_args = ["-c ~/analytcs/.eslintrc.json"]
 
 " Ctrl-P settings
@@ -102,14 +117,10 @@ let g:ctrlp_regexp = 0
 " git while files are open)
 set autoread
 
-" set background=light
-" colorscheme elflord
-" colorscheme solarized
-colorscheme morning
+set background=dark
+colorscheme solarized
 
 " Save when switching buffers
 set autowrite
 
-" Don't autowrap
-set textwidth=0
-set wrapmargin=0
+cabbr <expr> %% expand('%:p:h')
