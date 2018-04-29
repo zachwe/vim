@@ -1,5 +1,5 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible              " be iMproved
+filetype off                  " required for vundle
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -10,16 +10,40 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Sensible vim defaults
+Plugin 'tpope/vim-sensible'
+
+" ===== Language and format specific plugins =====-
+
+" Go
+Plugin 'fatih/vim-go'
+
+" JSON
+Plugin 'tpope/vim-jdaddy'
+
+" Syntastic syntax checker
+Plugin 'vim-syntastic/syntastic'
+
+" Git plugin
+Plugin 'tpope/vim-fugitive'
+
+" Ctrl-p fuzzy file finder
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Colorschemes
+Plugin 'flazz/vim-colorschemes'
+
 " Clojure REPL
 Plugin 'tpope/vim-fireplace'
+call vundle#end()            " required
+filetype plugin indent on    " required
+colorscheme solarized
 
 set nocp
 set backspace=2
 
 
 set showcmd
-filetype on
-filetype plugin on
 syntax enable
 set grepprg=grep\ -nH\ $*
 
@@ -83,9 +107,6 @@ syntax on
 
 set runtimepath+=~/.vim/bundle/jshint2.vim/
 
-" pathogen allows for really easy managing of vim plugins.
-execute pathogen#infect()
-
 " ejs files should just look like html
 au BufNewFile,BufRead *.ejs set filetype=html
 
@@ -118,7 +139,6 @@ let g:ctrlp_regexp = 0
 set autoread
 
 set background=dark
-colorscheme solarized
 
 " Save when switching buffers
 set autowrite
