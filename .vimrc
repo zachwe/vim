@@ -13,6 +13,9 @@ Plugin 'VundleVim/Vundle.vim'
 " Sensible vim defaults
 Plugin 'tpope/vim-sensible'
 
+" For surrounding text with stuff like a boss
+Plugin 'tpope/vim-surround'
+
 " ===== Language and format specific plugins =====-
 
 " Go
@@ -20,6 +23,8 @@ Plugin 'fatih/vim-go'
 
 " JSON
 Plugin 'tpope/vim-jdaddy'
+" Jsonnet
+Plugin 'google/vim-jsonnet'
 
 " Syntastic syntax checker
 Plugin 'vim-syntastic/syntastic'
@@ -35,6 +40,7 @@ Plugin 'flazz/vim-colorschemes'
 
 " Clojure REPL
 Plugin 'tpope/vim-fireplace'
+Plugin 'paredit.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 colorscheme solarized
@@ -45,7 +51,8 @@ set backspace=2
 
 set showcmd
 syntax enable
-set grepprg=grep\ -nH\ $*
+set grepprg=git\ grep\ $*
+nnoremap gr :grep <cword> *<CR>
 
 set autoindent
 
@@ -98,10 +105,6 @@ set hlsearch
 " But be able to get rid of that highlight.
 nmap \q :nohlsearch<CR>
 
-" Create folds for indents
-" set foldmethod=indent
-set foldmethod=syntax
-
 filetype indent plugin on
 syntax on
 
@@ -125,14 +128,16 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ["python", "flake8"]
 let g:syntastic_javascript_checkers = ["jshint"]
-let g:syntastic_python_checker_args='--ignore=E402'
-let g:syntastic_python_flake8_post_args='--ignore=E501,E402'
+let g:syntastic_python_checker_args='--ignore=E402,E302'
+let g:syntastic_python_flake8_post_args='--ignore=E501,E402,E302,E261'
 " let g:syntastic_javascript_eslint_args = ["-c ~/analytcs/.eslintrc.json"]
 
 " Ctrl-P settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_regexp = 0
+" prioritize current file
+let g:ctrlp_working_path_mode = 'rc'
 
 " Refresh files when they are changed (this is useful when doing things with
 " git while files are open)
@@ -144,3 +149,8 @@ set background=dark
 set autowrite
 
 cabbr <expr> %% expand('%:p:h')
+
+set omnifunc=syntaxcomplete#Complete
+
+let mapleader=","
+
