@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved
 filetype off                  " required for vundle
 
+let mapleader=","
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -15,6 +17,10 @@ Plugin 'tpope/vim-sensible'
 
 " For surrounding text with stuff like a boss
 Plugin 'tpope/vim-surround'
+
+" Completion
+" Probably need to update vim for this to work right
+" Plugin 'Valloric/YouCompleteMe'
 
 " ===== Language and format specific plugins =====-
 
@@ -31,6 +37,7 @@ Plugin 'vim-syntastic/syntastic'
 
 " Git plugin
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
 
 " Ctrl-p fuzzy file finder
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -115,12 +122,14 @@ au BufNewFile,BufRead *.ejs set filetype=html
 
 " Display filename
 set laststatus=2
+set statusline=
 set statusline+=%F
 
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set statusline+=\ %p%%
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -131,13 +140,29 @@ let g:syntastic_javascript_checkers = ["jshint"]
 let g:syntastic_python_checker_args='--ignore=E402,E302'
 let g:syntastic_python_flake8_post_args='--ignore=E501,E402,E302,E261'
 " let g:syntastic_javascript_eslint_args = ["-c ~/analytcs/.eslintrc.json"]
+" Cpp linting 
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_include_dirs = ['$HOME/analytics/backend/common', 'third_party']
 
 " Ctrl-P settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_regexp = 0
 " prioritize current file
-let g:ctrlp_working_path_mode = 'rc'
+let g:ctrlp_working_path_mode = 'c'
+" Go to an already open window
+let g:ctrlp_switch_buffer = 'ET'
+" Use per-session caching
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+" Don't even limit the number of files to scan
+let g:ctrlp_max_files = 0
+let g:ctrlp_lazy_update = 100
+" Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
 
 " Refresh files when they are changed (this is useful when doing things with
 " git while files are open)
@@ -152,5 +177,13 @@ cabbr <expr> %% expand('%:p:h')
 
 set omnifunc=syntaxcomplete#Complete
 
-let mapleader=","
+" set vim path
+let &path.="$HOME/analytics/backend/third_party,$HOME/analytics/backend/common,"
 
+" Mapping for comments
+" This actually maps <c-/>
+" https://stackoverflow.com/questions/9051837/how-to-map-c-to-toggle-comments-in-vim
+vnoremap <c-_> I// <ESC>
+
+" wrap lines on screen
+set wrap
